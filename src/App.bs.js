@@ -8,6 +8,7 @@ var React = require("react");
 var Js_exn = require("bs-platform/lib/js/js_exn.js");
 var Js_dict = require("bs-platform/lib/js/js_dict.js");
 var Js_json = require("bs-platform/lib/js/js_json.js");
+var Belt_List = require("bs-platform/lib/js/belt_List.js");
 var Caml_array = require("bs-platform/lib/js/caml_array.js");
 var ApolloLinks = require("reason-apollo/src/ApolloLinks.bs.js");
 var Belt_Option = require("bs-platform/lib/js/belt_Option.js");
@@ -465,8 +466,9 @@ function App$RssFeed(Props) {
   var url = Props.url;
   var setAudioUrl = Props.setAudioUrl;
   var audioUrl = Props.audioUrl;
+  var addPlaylist = Props.addPlaylist;
   var variables = make(url, /* () */0).variables;
-  var match = Curry._7(RssFeedQuery[/* use */0], Caml_option.some(variables), undefined, undefined, /* NetworkOnly */1, /* All */2, undefined, /* () */0);
+  var match = Curry._8(RssFeedQuery[/* use */0], Caml_option.some(variables), undefined, undefined, /* NetworkOnly */2, /* All */2, undefined, undefined, /* () */0);
   var full = match[1];
   var data = full[/* data */0];
   if (full[/* loading */1]) {
@@ -488,6 +490,7 @@ function App$RssFeed(Props) {
                                           item: item,
                                           setAudioUrl: setAudioUrl,
                                           audioUrl: audioUrl,
+                                          addPlaylist: addPlaylist,
                                           key: item.title
                                         });
                             }), __x);
@@ -671,13 +674,55 @@ function App(Props) {
   var match = React.useState((function () {
           return "";
         }));
+  var setAudioUrl = match[1];
   var audioUrl = match[0];
+  var match$1 = React.useState((function () {
+          return /* [] */0;
+        }));
+  var addPlaylist = match$1[1];
+  var match$2 = React.useState((function () {
+          return false;
+        }));
+  var setDrawer = match$2[1];
+  var playlist = $$Array.of_list(Belt_List.map(match$1[0], (function (ele) {
+              return React.createElement(PodcastCard$ReactHooksTemplate.make, {
+                          item: ele,
+                          setAudioUrl: setAudioUrl,
+                          audioUrl: audioUrl,
+                          addPlaylist: addPlaylist,
+                          key: ele.title
+                        });
+            })));
   return React.createElement(ReactHooks.ApolloProvider, {
               client: client,
-              children: React.createElement("div", undefined, React.createElement(App$RssFeed, {
+              children: React.createElement("div", undefined, React.createElement("div", {
+                        style: {
+                          position: "fixed",
+                          right: "20px",
+                          top: "20px",
+                          zIndex: "100"
+                        }
+                      }, React.createElement(Antd.Button, {
+                            children: "My list",
+                            type: "primary",
+                            onClick: (function (param) {
+                                return Curry._1(setDrawer, (function (_visible) {
+                                              return true;
+                                            }));
+                              })
+                          })), React.createElement(Antd.Drawer, {
+                        visible: match$2[0],
+                        onClose: (function (param) {
+                            return Curry._1(setDrawer, (function (_visible) {
+                                          return false;
+                                        }));
+                          }),
+                        children: React.createElement("div", undefined, React.createElement("h2", undefined, "My favorites"), React.createElement("div", undefined, playlist))
+                      }), React.createElement(App$RssFeed, {
                         url: "https://www.heavybit.com/category/library/podcasts/jamstack-radio/feed",
-                        setAudioUrl: match[1],
-                        audioUrl: audioUrl
+                        setAudioUrl: setAudioUrl,
+                        audioUrl: audioUrl,
+                        addPlaylist: addPlaylist
                       }), React.createElement("div", {
                         style: {
                           bottom: "20px",

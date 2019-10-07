@@ -729,3 +729,31 @@ module Card = {
     element =
     "Card";
 };
+
+module Drawer = {
+  [@bs.module "antd"] [@react.component]
+  external make:
+    (
+      ~closable: bool=?,
+      ~destroyOnClose: bool=?,
+      ~getContainer: element=?,
+      ~mask: bool=?,
+      ~maskClosable: bool=?,
+      ~maskStyle: style=?,
+      ~style: style=?,
+      ~bodyStyle: style=?,
+      ~title: string=?,
+      ~visible: bool=?,
+      ~width: string=?,
+      ~height: string=?,
+      ~className: string=?,
+      ~zIndex: int=?,
+      ~placement: string=?,
+      ~onClose: 'a => unit=?,
+      ~afterVisibleChange: 'a => unit=?,
+      ~keyboard: bool=?,
+      ~children: 'b
+    ) =>
+    element =
+    "Drawer";
+};

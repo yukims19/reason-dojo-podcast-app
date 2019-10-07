@@ -28,7 +28,7 @@
     "onegraph-auth": "2.0.6",
     "bs-onegraph-auth": "0.0.3",
     "reason-apollo": "^0.17.0",
-    "reason-apollo-hooks": "^2.6.0",
+    "reason-apollo-hooks": "^2.7.0",
     "graphql": "^14.0.2"
   },
   "devDependencies": {
@@ -38,6 +38,7 @@
     "webpack-cli": "^3.1.1",
     "webpack-dev-server": "^3.1.8",
     "reason-cli": "3.3.3-macos-1",
-    "graphql_ppx": "^0.2.0"
+    "graphql_ppx": "^0.2.8",
+    "bs-onegraph-auth": "0.0.5"
   }
 }

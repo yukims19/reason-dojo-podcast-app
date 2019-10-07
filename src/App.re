@@ -98,7 +98,7 @@ module RssFeedQuery = ReasonApolloHooks.Query.Make(RssFeedQueryConfig);
 
 module RssFeed = {
   [@react.component]
-  let make = (~url, ~setAudioUrl, ~audioUrl) => {
+  let make = (~url, ~setAudioUrl, ~audioUrl, ~addPlaylist) => {
     open React;
     let variables = RssFeedQueryConfig.make(~url, ())##variables;
 
@@ -127,7 +127,13 @@ module RssFeed = {
               rss##rss2Feed##items
               ->Array.map(
                   item =>
-                    <PodcastCard key=item##title item setAudioUrl audioUrl />,
+                    <PodcastCard
+                      key=item##title
+                      item
+                      setAudioUrl
+                      audioUrl
+                      addPlaylist
+                    />,
                   _,
                 )
               ->array
@@ -266,13 +272,52 @@ module Example = {
 [@react.component]
 let make = () => {
   let (audioUrl, setAudioUrl) = React.useState(() => "");
+  let (tempPlaylist, addPlaylist) = React.useState(() => []);
+  let (drawerVisible, setDrawer) = React.useState(() => false);
+
+  let playlist =
+    tempPlaylist
+    ->Belt.List.map(ele =>
+        <PodcastCard
+          key=ele##title
+          item=ele
+          setAudioUrl
+          audioUrl
+          addPlaylist
+        />
+      )
+    ->Array.of_list
+    ->ReasonReact.array;
 
   <ReasonApolloHooks.ApolloProvider client=Client.client>
     <div>
+      <div
+        style={
+          ReactDOMRe.Style.make(
+            ~position="fixed",
+            ~top="20px",
+            ~right="20px",
+            ~zIndex="100",
+            (),
+          )
+        }>
+        <Reant.Button
+          onClick={() => setDrawer(_visible => true)} _type="primary">
+          "My list"->ReasonReact.string
+        </Reant.Button>
+      </div>
+      <Reant.Drawer
+        visible=drawerVisible onClose={() => setDrawer(_visible => false)}>
+        <div>
+          <h2> "My favorites"->ReasonReact.string </h2>
+          <div> playlist </div>
+        </div>
+      </Reant.Drawer>
       <RssFeed
         url="https://www.heavybit.com/category/library/podcasts/jamstack-radio/feed"
         setAudioUrl
         audioUrl
+        addPlaylist
       />
       <div
         style={

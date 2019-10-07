@@ -78,6 +78,8 @@ var Popconfirm = /* module */[];
 
 var Card = /* module */[];
 
+var Drawer = /* module */[];
+
 exports.Breadcrumb = Breadcrumb;
 exports.Button = Button;
 exports.Form = Form;
@@ -90,4 +92,5 @@ exports.Table = Table;
 exports.Message = Message;
 exports.Popconfirm = Popconfirm;
 exports.Card = Card;
+exports.Drawer = Drawer;
 /* No side effect */

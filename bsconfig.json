@@ -14,14 +14,14 @@
   }],
   "suffix": ".bs.js",
   "namespace": true,
-    "bs-dependencies": [
-      "bs-onegraph-auth",
-      "reason-react",
-      "reason-apollo",
-      "reason-apollo-hooks"
-  ],
-  "refmt": 3,
-  "ppx-flags": [
+       "bs-dependencies": [
+     "bs-onegraph-auth",
+     "reason-apollo-hooks",
+     "reason-apollo",
+     "reason-react"
+   ],
+   "ppx-flags": [
      "graphql_ppx/ppx"
-   ]
+   ],
+  "refmt": 3
 }

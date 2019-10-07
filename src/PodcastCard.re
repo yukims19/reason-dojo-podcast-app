@@ -1,7 +1,7 @@
 open React;
 
 [@react.component]
-let make = (~item, ~setAudioUrl, ~audioUrl) => {
+let make = (~item, ~setAudioUrl, ~audioUrl, ~addPlaylist) => {
   let itemAudioUrl =
     item##enclosure
     ->Belt.Option.mapWithDefault("", enclosure => enclosure##url);
@@ -31,7 +31,9 @@ let make = (~item, ~setAudioUrl, ~audioUrl) => {
         _type="danger"
         shape="circle"
         icon="heart"
-        onClick={_event => Js.log("Save to like ")}
+        onClick={
+          _event => addPlaylist(playlist => playlist->List.append([item]))
+        }
       />
     </div>
   </Reant.Card>;
