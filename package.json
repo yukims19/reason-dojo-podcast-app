@@ -1,0 +1,43 @@
+{
+  "name": "my-react-app",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "bsb -make-world",
+    "start": "bsb -make-world -w",
+    "clean": "bsb -clean-world",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "webpack -w",
+    "webpack:production": "NODE_ENV=production webpack",
+    "server": "webpack-dev-server",
+    "emacs": "emacs"
+  },
+  "keywords": [
+    "BuckleScript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
+    "reason-react": ">=0.7.0",
+    "@apollo/react-hooks": "^3.0.1",
+    "antd": "^3.22.2",
+    "bs-date-fns": "^0.1.6",
+    "get_in_ppx": "^1.0.2",
+    "jwks-rsa": "1.6.0",
+    "onegraph-auth": "2.0.6",
+    "bs-onegraph-auth": "0.0.3",
+    "reason-apollo": "^0.17.0",
+    "reason-apollo-hooks": "^2.6.0",
+    "graphql": "^14.0.2"
+  },
+  "devDependencies": {
+    "bs-platform": "^5.0.6",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.0.1",
+    "webpack-cli": "^3.1.1",
+    "webpack-dev-server": "^3.1.8",
+    "reason-cli": "3.3.3-macos-1",
+    "graphql_ppx": "^0.2.0"
+  }
+}
